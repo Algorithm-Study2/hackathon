@@ -63,13 +63,7 @@ while(1):
 
     download = driver.find_elements_by_xpath(download_xpath)
     for down in download: download_list.append(down.text)
-    download_list[0] = download_list[0].replace("+", "").replace("천", "000").replace("만", "0000")
-    download_list[0] = int(download_list[0])
-    age = driver.find_elements_by_xpath(age_xpath)
-    for ag in age: age_list.append(ag.text)
-    update = driver.find_elements_by_xpath(update_xpath)
-    for ud in update: update_list.append(ud.text)
-    if not update:
+    if not download:
         idx += 1
         image_list.pop()
         name_list.pop()
@@ -78,6 +72,13 @@ while(1):
         driver.close()
         driver.switch_to.window(driver.window_handles[-1])
         continue
+    download_list[0] = download_list[0].replace("+", "").replace("천", "000").replace("만", "0000")
+    download_list[0] = int(download_list[0])
+
+    age = driver.find_elements_by_xpath(age_xpath)
+    for ag in age: age_list.append(ag.text)
+    update = driver.find_elements_by_xpath(update_xpath)
+    for ud in update: update_list.append(ud.text)
 
     i = 1
     while 1:
